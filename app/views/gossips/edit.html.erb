@@ -1,6 +1,23 @@
+<% if user_signed_in? %>
+
 <h1>Editing Gossip</h1>
+
+
 
 <%= render 'form', gossip: @gossip %>
 
 <%= link_to 'Show', @gossip %> |
 <%= link_to 'Back', gossips_path %>
+
+<% else %>
+
+<%= flash[:error] = "You must be logged in to access this section" %>
+<h2> Nope Tu dois être Signed In pour voir les gossips</h2>
+<div class = "butts">
+<%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %> 
+<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %> 
+<h2> ou fais moi un petit dessins juste en dessous </h2>
+
+
+<% end %>
+

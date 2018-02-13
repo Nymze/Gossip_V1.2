@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% if user_signed_in? %>
+
 <p>
-  <strong>Anonymous author:</strong>
+  <strong>Not so Anonymous author:</strong>
   <%= @gossip.user.try(:email) %>
 </p>
 
@@ -12,3 +14,15 @@
 
 <%= link_to 'Edit', edit_gossip_path(@gossip) %> |
 <%= link_to 'Back', gossips_path %>
+
+<% else %>
+
+<%= flash[:error] = "You must be logged in to access this section" %>
+<h2> TU dois être Signed In pour voir les gossips</h2>
+<div class = "butts">
+<%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"  %> 
+<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-lg btn-primary"  %> 
+<h2> ou fais moi un petit dessins juste en dessous </h2>
+
+
+<% end %>
